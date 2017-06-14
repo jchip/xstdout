@@ -39,6 +39,14 @@ describe("xstdout", function() {
     expect(stdout[1]).to.equal(undefined);
   });
 
+  it("should catch error from interceptor", () => {
+    const restore = xstdout.interceptStdout(msg => {
+      throw new Error("oh no");
+    });
+    process.stdout.write("hello");
+    restore();
+  });
+
   it("should unsilently capture stdout & stderr", () => {
     const intercept = xstdout.intercept(false);
     process.stdout.write("hello\n");
