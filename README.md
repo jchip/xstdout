@@ -1,0 +1,2 @@
+# xstdout
+capture stdout
